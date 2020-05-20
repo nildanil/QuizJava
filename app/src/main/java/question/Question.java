@@ -1,7 +1,7 @@
 package question;
 
 public class Question {
-    public String question,option1,option2,option3,option4,answer;
+    private String question,option1,option2,option3,option4,answer;
 
 
     public Question() {
