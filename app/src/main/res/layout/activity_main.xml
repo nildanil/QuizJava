@@ -15,12 +15,21 @@
         <TextView
             android:id="@+id/questionText"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="156dp"
             android:gravity="center_horizontal"
             android:text=""
             android:textAlignment="center"
             android:textColor="#87CEFA"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/countdown"
+            android:layout_width="41dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text=" "
+            android:textAlignment="center"
+            android:textSize="30dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,21 +38,13 @@
             tools:ignore="ExtraText">
 
             <ProgressBar
-                android:id="@+id/progressBar2"
+                android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="398dp"
+                android:layout_width="297dp"
+                android:max = '30'
                 android:layout_height="54dp"
                 android:layout_weight="1"
-                android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-                />
-            <TextView
-                android:layout_width="41dp"
-                android:layout_height="match_parent"
-                android:text="00"
-                android:textAlignment="center"
-                android:textSize="30dp"
-                android:gravity="center_horizontal"
-                android:id="@+id/countdown"/>
+                android:outlineAmbientShadowColor="@color/colorPrimaryDark" />
 
 
         </LinearLayout>
