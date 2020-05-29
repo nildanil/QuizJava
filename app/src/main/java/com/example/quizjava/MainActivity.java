@@ -1,40 +1,39 @@
 package com.example.quizjava;
-import java.util.Timer;
-import java.util.TimerTask;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Random;
 
-import org.w3c.dom.Text;
-
-import question.Question; //Класс, в котором есть методы получения ответов, вопросов и вариантов ответа
+import question.Question;
 
 
 
 public class MainActivity extends AppCompatActivity {
+    Random random = new Random();
     Button bt1, bt2, bt3, bt4; //Кнопки выбора ответа
     TextView questionWidget, countdown; //Текст вопроса
     ProgressBar progressBar;
     int total = 0, correct = 0, wrong = 0;
-    int seconds = 30;
+    int seconds = 31;
+    int numOfQuestions = 7;
     DatabaseReference reference; //Нужно для работы с базой данных Firebase
 
     @Override
@@ -65,14 +64,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 Intent intent  = new Intent(MainActivity.this,FinalActivity.class);
-                intent.putExtra("total", String.valueOf(total));
+                intent.putExtra("total", String.valueOf(total--));
                 intent.putExtra("correct", String.valueOf(correct));
                 intent.putExtra("incorrect", String.valueOf(wrong));
                 intent.putExtra("final", "Время вышло!");
                 startActivity(intent);
 
             }
-        }.start();
+        };
 
         updateQuestion(bt1, bt2, bt3, bt4, questionWidget,counterDown); // Функция обновления вопросов (основная)
 
@@ -81,10 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void updateQuestion(final Button bt1, final Button bt2, final Button bt3, final Button bt4, final TextView questionWidget,final CountDownTimer count) {
-
+        count.start();
         total++;//следующий вопрос
 
-        if (total > 6) {//6 -  количество вопросов в базе данных на данный момент
+        if (total > numOfQuestions) {//6 -  количество вопросов в базе данных на данный момент
             Intent intent  = new Intent(MainActivity.this,FinalActivity.class);
             intent.putExtra("total", String.valueOf(total));
             intent.putExtra("correct", String.valueOf(correct));
@@ -119,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     bt1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) { // Нажимаем кнопку 1
+                            count.cancel();
 
                             if (bt1.getText().toString().equals(question.getAnswer())) {// если текст на кнопке совпал с ответом из бызы данных
                                 bt1.setBackgroundColor(Color.GREEN);
@@ -128,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
                                                         public void run() {
                                                             correct++;
                                                             bt1.setBackgroundColor(Color.parseColor("#90EE90"));
-                                                            updateQuestion(bt1, bt2, bt3, bt4, questionWidget,count);
                                                             seconds = 30;
+                                                            updateQuestion(bt1, bt2, bt3, bt4, questionWidget,count);
 
 
 
@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
                                     }
                                 }, 1500);
 
@@ -176,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
                     bt2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) { // Та же схема для всех кнопок
+                            count.cancel();
+
 
 
 
@@ -190,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
                                         bt2.setBackgroundColor(Color.parseColor("#90EE90"));
                                         updateQuestion(bt1, bt2, bt3, bt4, questionWidget,count);
                                         seconds = 30;
+
 
 
 
@@ -232,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
                     bt3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            count.cancel();
 
 
                             if (bt3.getText().toString().equals(question.getAnswer())) {
@@ -245,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
                                         bt3.setBackgroundColor(Color.parseColor("#90EE90"));
                                         updateQuestion(bt1, bt2, bt3, bt4, questionWidget,count);
                                         seconds = 30;
+
 
 
 
@@ -274,6 +280,7 @@ public class MainActivity extends AppCompatActivity {
                                         seconds = 30;
 
 
+
                                     }
                                 }, 1500);
 
@@ -284,6 +291,7 @@ public class MainActivity extends AppCompatActivity {
                     bt4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            count.cancel();
 
 
                             if (bt4.getText().toString().equals(question.getAnswer())) {
@@ -297,6 +305,7 @@ public class MainActivity extends AppCompatActivity {
                                         bt4.setBackgroundColor(Color.parseColor("#90EE90"));
                                         updateQuestion(bt1, bt2, bt3, bt4, questionWidget,count);
                                         seconds = 30;
+
 
                                     }
                                 }, 1500);
@@ -322,6 +331,7 @@ public class MainActivity extends AppCompatActivity {
                                         bt4.setBackgroundColor(Color.parseColor("#90EE90"));
                                         updateQuestion(bt1, bt2, bt3, bt4, questionWidget, count);
                                         seconds = 30;
+
 
                                     }
                                 }, 1500);
