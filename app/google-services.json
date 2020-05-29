@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "476798072344",
+    "firebase_url": "https://quizjava-f91fe.firebaseio.com",
+    "project_id": "quizjava-f91fe",
+    "storage_bucket": "quizjava-f91fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476798072344:android:b3e64b5bcdebc7c1cdb56d",
+        "android_client_info": {
+          "package_name": "com.example.quizjava"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476798072344-cs3qt8cvqkupfjrgkj68lja1aes2fsta.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quizjava",
+            "certificate_hash": "0b48695210dd243bc81274725b88d6ad7d61b295"
+          }
+        },
+        {
+          "client_id": "476798072344-71dq1mj6joc6c30e2b9c5b3sh2nob138.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMUDq3TeiAEiPdJ0ihijj09PcZdV8ffAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476798072344-71dq1mj6joc6c30e2b9c5b3sh2nob138.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
